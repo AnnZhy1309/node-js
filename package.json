@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "joi": "^17.9.2",
+    "morgan": "^1.10.0",
+    "pg-promise": "^11.5.0"
+  }
+}
