@@ -1,20 +1,8 @@
-import {createServer} from 'node:http';
-import figlet from 'figlet';
+import { writeFile } from 'node:fs';
+import { Buffer } from 'node:buffer';
 
-const server = createServer((res, req)=>{
-   res.statusCode = 200;
-   res.setHeader = ('Content-type', 'text/plain');
-
-  figlet("Hello World!!", function (err, data) {
-     if (err) {
-      console.log("Something went wrong...");
-      console.dir(err);
-      return;
-  }
+const data = new Uint8Array(Buffer.from('This is a content'));
+writeFile('message.txt', data, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
 });
-   res.end = (figlet())
-});
-
-server.listen(3000, ()=>{
-    console.log('Server is running');
-} );
