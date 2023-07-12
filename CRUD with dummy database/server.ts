@@ -1,6 +1,7 @@
 import express from "express";
 import {Request, Response } from "express";
 import 'express-async-errors'
+import Joi from "joi";
 import morgan from 'morgan';
 
 const app = express();
@@ -36,9 +37,18 @@ app.get("api/planets:id", (req, res)=>{
     res.status(200).json(planet)
 })
 
+const planetScheme = Joi.object({
+  id: Joi.number().integer().required(),
+  name: Joi.string().required(),
+})
+
 app.post("api/planets", (req, res)=>{
     const {id, name} = req.body;
     const newPlanet = {id, name};
+    const validation = planetScheme.validate(newPlanet);
+    if(validation.error){
+      return res.status(400).json({msg: validation.error.details[0].message});
+    }else{
     planets = [...planets, newPlanet];
     res.status(201).json({msg: "The new planet"});
 })
