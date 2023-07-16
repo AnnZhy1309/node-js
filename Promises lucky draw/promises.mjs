@@ -9,17 +9,24 @@ function luckyDraw(player) {
           reject(new Error(`${player} lost the draw.`));
         }
       });
+
   luckyDraw(player)
-   .then(function(Joe){
-    console.log(Joe);
+   .then(function(val){
+    console.log(val);
    })
    .then(function(Caroline){
-    console.log(Caroline);
+    return luckyDraw(Caroline);
+   })
+   .then(function(val){
+    console.log(val);
    })
    .then(function(Sabrine){
-    console.log(Sabrine);
+    return luckyDraw(Sabrine);
+   })
+   .then(function(val){
+    console.log(val);
    })
    .catch((err)=>console.error(err)); 
-   });
+  }) };
 
-}
+  console.log(luckyDraw());
