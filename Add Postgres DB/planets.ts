@@ -52,4 +52,10 @@ const deleteById = (req: Request, res: Response)=>{
     res.status(200).json({msg: "Planet deleted"});
 }
 
-export {getAll, getOne, create, updateById, deleteById};
+const createImage = async(req:Request, res:Response)=>{
+    console.log(req.file);
+    
+    res.status(201).json({msg:"Planet image uploaded"})
+}
+
+export {getAll, getOne, create, updateById, deleteById, createImage};
